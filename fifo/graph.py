@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 x=[]
 y=[]
-with open("fifo_output.txt",'r') as f:
+with open("pagefaultdata_fifo.txt",'r') as f:
     Lines = f.readlines()
     for line in Lines:
         line = line.split();
