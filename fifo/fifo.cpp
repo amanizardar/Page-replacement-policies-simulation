@@ -15,7 +15,7 @@ int fifo_pf(vector<int>ref, int n, int frames){
 			
 			if(s.find(ref[i]) == s.end()){
 				//not found
-				pf+=1;
+				pf++;
 				
 				s.insert(ref[i]);
 				q.push(ref[i]);
@@ -43,24 +43,44 @@ int fifo_pf(vector<int>ref, int n, int frames){
 }
 
 
-void space_seperated_words(string input, vector<int> &token)
+
+void space_separated_words(string input, vector<int> &token,vector<int> &dirty)
 {
 
     string word = "";
+    bool isdirtystarted=false;
+
     for (auto x : input)
     {
         if (x == ' ')
         {
+            if(word.size()==0)
+            {
+                continue;
+            }
+            
+
+            if(!isdirtystarted)
             token.push_back(stoi(word));
+
+            else
+            dirty.push_back(stoi(word));
+            // cout << word << endl;
             word = "";
+        }
+        else if(x==',')
+        {
+            isdirtystarted=true;
         }
         else
         {
             word = word + x;
         }
     }
-    token.push_back(stoi(word));
+    cout << word << endl;
+    dirty.push_back(stoi(word));
 }
+
 
 int main(){
 	
@@ -69,23 +89,21 @@ int main(){
 	float hit_r,miss_r;
 	vector<int> cont;
 	
-	//cout<<"Enter reference string length";
-	//cin>>n;
-	//cout<<endl<<"Enter string:";
-	
 	ifstream ifile;
 	ifile.open("input.txt");
 	
 	ofstream ofile;
-	ofile.open("fifo_output.txt");
+	ofile.open("pagefaultdata_fifo.txt");
 	
 	string st;
 	while(getline(ifile,st)){
 		
-		space_seperated_words(st,cont);
+		vector<int>dirty;
+		space_separated_words(st,cont,dirty);
 		frames=cont[0];
 		
 		vector<int>ref(cont.begin()+1,cont.end());
+		
 		n=ref.size();
 		
 		page_fault=fifo_pf(ref,n,frames);
@@ -102,7 +120,7 @@ int main(){
 		cout<<endl<<"Miss ratio:"<<miss_r;
 		cout<<endl;
 		
-		ofile<<frames<<" "<<miss_r<<endl;
+		ofile << frames<<" "<<n<<" "<<page_fault<< endl;
 		
 		cont.clear();
 		
