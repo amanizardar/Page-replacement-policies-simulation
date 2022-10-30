@@ -19,6 +19,8 @@ Keeping track of what pages are being loaded, we observed the performance of all
 page replacement algorithms under different situations( number of frames allocated to
 process in main memory) and represented in the form of graphs
 
+##### Project code is inside QuadSquad Folder.
+
 ### PROBLEM DESCRIPTION
 To evaluate the performance of above-mentioned algorithms using the parameters like
 number of frames and length of page streams. To analyse the miss ratio, the number of
