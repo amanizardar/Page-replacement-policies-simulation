@@ -37,9 +37,10 @@ project is working.
 
 ### WORK DISTRIBUTION
 - Aman Izardar - WSClock , Working set , Aging
+- Diksha Daryani - Least Recently used , Optimal , Random
 - Ayush Mittal - Clock ,FIFO with second chance , Not Recently Used
 - Annapoorani A. - First in First Out , Not Frequently Used
-- Diksha Daryani - Least Recently used , Optimal , Random
+
 
 ### PROBLEMS FACED AND SHORTCOMINGS
 One of the main problems was different elaboration of some page replacements policies
